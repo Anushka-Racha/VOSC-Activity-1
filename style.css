@@ -1,0 +1,500 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Arial, sans-serif;
+
+    background: linear-gradient(
+        135deg,
+        #0f172a,
+        #1e293b
+    );
+
+    color: white;
+
+    padding: 30px;
+}
+
+
+.game-container {
+    width: min(95%, 650px);
+
+    text-align: center;
+}
+
+
+/* ---------------- HEADER ---------------- */
+
+header {
+    margin-bottom: 25px;
+}
+
+
+.vosc {
+    font-size: 13px;
+
+    letter-spacing: 3px;
+
+    color: #38bdf8;
+
+    font-weight: bold;
+
+    margin-bottom: 8px;
+}
+
+
+header h1 {
+    font-size: 45px;
+
+    margin-bottom: 5px;
+}
+
+
+.subtitle {
+    color: #cbd5e1;
+
+    font-size: 16px;
+}
+
+
+/* ---------------- SETUP ---------------- */
+
+.setup,
+.game {
+    background: rgba(15, 23, 42, 0.9);
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+
+.setup h2 {
+    margin-bottom: 25px;
+}
+
+
+.player-inputs {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+
+.input-box {
+    text-align: left;
+}
+
+
+.input-box label {
+    display: block;
+
+    font-size: 14px;
+
+    margin-bottom: 7px;
+
+    color: #cbd5e1;
+}
+
+
+.input-box input {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 2px solid #334155;
+
+    border-radius: 8px;
+
+    background: #1e293b;
+
+    color: white;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+
+.input-box input:focus {
+    border-color: #38bdf8;
+}
+
+
+.setup h3 {
+    margin-bottom: 15px;
+
+    font-size: 16px;
+}
+
+
+/* ---------------- SYMBOL SELECTION ---------------- */
+
+.symbol-selection {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+
+.symbol-btn {
+    width: 70px;
+
+    height: 60px;
+
+    border: 2px solid #475569;
+
+    border-radius: 10px;
+
+    background: #1e293b;
+
+    color: white;
+
+    font-size: 30px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.symbol-btn:hover {
+    transform: scale(1.05);
+}
+
+
+.symbol-btn.selected {
+    border-color: #38bdf8;
+
+    background: #075985;
+}
+
+
+/* ---------------- BUTTONS ---------------- */
+
+.start-btn,
+.primary-btn,
+.secondary-btn {
+    border: none;
+
+    border-radius: 9px;
+
+    padding: 13px 25px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.start-btn,
+.primary-btn {
+    background: #38bdf8;
+
+    color: #0f172a;
+}
+
+
+.start-btn:hover,
+.primary-btn:hover {
+    transform: translateY(-2px);
+}
+
+
+.secondary-btn {
+    background: #475569;
+
+    color: white;
+}
+
+
+.secondary-btn:hover {
+    background: #64748b;
+}
+
+
+#errorMessage {
+    color: #fb7185;
+
+    margin-top: 15px;
+
+    min-height: 20px;
+}
+
+
+/* ---------------- SCOREBOARD ---------------- */
+
+.scoreboard {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+
+.player-card {
+    padding: 18px;
+
+    border-radius: 12px;
+
+    background: #1e293b;
+
+    border: 2px solid transparent;
+
+    transition: 0.3s;
+}
+
+
+.player-card.active {
+    border-color: #38bdf8;
+}
+
+
+.player-card span {
+    display: block;
+
+    color: #cbd5e1;
+}
+
+
+.player-card strong {
+    display: block;
+
+    font-size: 32px;
+
+    margin: 5px 0;
+}
+
+
+.player-card p {
+    color: #cbd5e1;
+}
+
+
+/* ---------------- STATUS ---------------- */
+
+.status-box {
+    margin-bottom: 20px;
+}
+
+
+#status {
+    font-size: 18px;
+
+    font-weight: bold;
+
+    color: #e2e8f0;
+}
+
+
+/* ---------------- BOARD ---------------- */
+
+.board {
+    position: relative;
+
+    width: min(100%, 390px);
+
+    aspect-ratio: 1;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    grid-template-rows: repeat(3, 1fr);
+
+    gap: 8px;
+}
+
+
+.cell {
+    border: none;
+
+    background: #f8fafc;
+
+    border-radius: 5px;
+
+    font-size: clamp(45px, 12vw, 75px);
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    color: #0f172a;
+
+    transition: 0.2s;
+
+    position: relative;
+
+    z-index: 1;
+}
+
+
+.cell:hover:not(:disabled) {
+    background: #e2e8f0;
+
+    transform: scale(1.02);
+}
+
+
+.cell:disabled {
+    cursor: default;
+}
+
+
+.cell.x {
+    color: #2563eb;
+}
+
+
+.cell.o {
+    color: #dc2626;
+}
+
+
+/* ---------------- STRIKE LINE ---------------- */
+
+.strike {
+    position: absolute;
+
+    height: 7px;
+
+    background: #111827;
+
+    border-radius: 10px;
+
+    z-index: 5;
+
+    transform-origin: left center;
+
+    display: none;
+
+    pointer-events: none;
+}
+
+
+.strike.show {
+    display: block;
+
+    animation: strikeAnimation 0.5s ease-out;
+}
+
+
+@keyframes strikeAnimation {
+
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+
+}
+
+
+/* ---------------- RESULT ---------------- */
+
+.result {
+    min-height: 35px;
+
+    margin-top: 20px;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    color: #38bdf8;
+}
+
+
+/* ---------------- GAME BUTTONS ---------------- */
+
+.game-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-top: 20px;
+}
+
+
+/* ---------------- FOOTER ---------------- */
+
+footer {
+    margin-top: 20px;
+
+    color: #94a3b8;
+
+    font-size: 13px;
+}
+
+
+/* ---------------- MOBILE ---------------- */
+
+@media (max-width: 550px) {
+
+    body {
+        padding: 15px;
+    }
+
+
+    header h1 {
+        font-size: 35px;
+    }
+
+
+    .setup,
+    .game {
+        padding: 20px;
+    }
+
+
+    .player-inputs {
+        grid-template-columns: 1fr;
+    }
+
+
+    .game-buttons {
+        flex-direction: column;
+    }
+
+
+    .game-buttons button {
+        width: 100%;
+    }
+
+}
